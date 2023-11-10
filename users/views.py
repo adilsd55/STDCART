@@ -10,6 +10,7 @@ from django.urls import reverse
 from .forms import CusRatFeedform
 
 # Create your views here.
+@csrf_protect
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -22,7 +23,7 @@ def register(request):
         form = RegistrationForm()
     return render(request, 'users/register.html', {'form':form})
 
-
+@csrf_protect
 def login_view(request):
     username = request.POST["username"]
     password = request.POST["password"]
@@ -53,7 +54,7 @@ def login_view(request):
         login(request,user)
         return redirect('food:index')
 
-
+@csrf_protect
 def logout_view(request):
     username = request.user.username
     messages.success(request, f'{username}, you have been logged out successfully')
@@ -61,7 +62,7 @@ def logout_view(request):
     return redirect('food:index')
 
 
-
+@csrf_protect
 @login_required
 def profilepage(request):
     return render(request, 'users/profile.html')
