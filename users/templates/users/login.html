@@ -15,7 +15,6 @@
                     <div class="card-body">
                         <form action="../login_ud/" method="POST">
                             {% csrf_token %}
-                            {%csrf_protect%}
                             <label>Username: </label><br>
                             {{ form.username }}
                             <br><label>Password: </label><br>
